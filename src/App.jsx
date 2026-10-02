@@ -1,4 +1,6 @@
 import "./App.css";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import SymptomChecker from "./pages/SymptomChecker";
 
 function App() {
   return (

@@ -215,3 +215,76 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+/* Symptom Checker */
+
+.checker-page {
+  min-height: 100vh;
+  padding: 70px 20px;
+  background: #f8fafc;
+}
+
+.checker-container {
+  max-width: 750px;
+  margin: auto;
+  background: white;
+  padding: 45px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.checker-container h1 {
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+
+.checker-description {
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 35px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #0284c7;
+}
+
+.medical-warning {
+  margin-top: 30px;
+  padding: 18px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+  color: #9a3412;
+}
+
+.medical-warning p {
+  margin-top: 8px;
+  line-height: 1.5;
+}
