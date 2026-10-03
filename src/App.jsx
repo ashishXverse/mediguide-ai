@@ -2,22 +2,27 @@ import "./App.css";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import SymptomChecker from "./pages/SymptomChecker";
 
-function App() {
+function Home() {
   return (
     <div className="app">
 
       {/* Navbar */}
       <nav className="navbar">
+
         <div className="logo">
           Medi<span>Guide</span> AI
         </div>
 
         <div className="nav-links">
-          <a href="#">Home</a>
-          <a href="#">Doctors</a>
-          <a href="#">How it works</a>
-          <button className="login-btn">Login</button>
+          <Link to="/">Home</Link>
+          <Link to="/doctors">Doctors</Link>
+          <Link to="/how-it-works">How it works</Link>
+
+          <button className="login-btn">
+            Login
+          </button>
         </div>
+
       </nav>
 
       {/* Hero Section */}
@@ -42,9 +47,12 @@ function App() {
               specialties, and when to seek professional care.
             </p>
 
-            <button className="primary-btn">
-              Check Your Symptoms →
-            </button>
+            {/* THIS IS THE IMPORTANT PART */}
+            <Link to="/symptom-checker">
+              <button className="primary-btn">
+                Check Your Symptoms →
+              </button>
+            </Link>
 
             <p className="small-text">
               Your information is used only to provide healthcare guidance.
@@ -63,7 +71,9 @@ function App() {
 
             <div className="feature-card">
               <div className="icon">🩺</div>
+
               <h3>AI Health Guidance</h3>
+
               <p>
                 Describe your symptoms and receive general
                 health information to help you understand
@@ -73,7 +83,9 @@ function App() {
 
             <div className="feature-card">
               <div className="icon">👨‍⚕️</div>
+
               <h3>Find a Specialist</h3>
+
               <p>
                 Get matched with relevant medical specialties
                 based on the information you provide.
@@ -82,7 +94,9 @@ function App() {
 
             <div className="feature-card">
               <div className="icon">🚨</div>
+
               <h3>Safety First</h3>
+
               <p>
                 Identify warning signs that may require
                 urgent professional medical attention.
@@ -95,20 +109,49 @@ function App() {
 
         {/* Disclaimer */}
         <section className="disclaimer">
+
           <strong>Important:</strong> MediGuide AI provides
           general healthcare information and is not a substitute
           for professional medical diagnosis or treatment.
+
         </section>
 
       </main>
 
       {/* Footer */}
       <footer>
-        <p>© 2026 MediGuide AI. Built for healthcare guidance.</p>
+        <p>
+          © 2026 MediGuide AI. Built for healthcare guidance.
+        </p>
       </footer>
 
     </div>
   );
 }
+
+
+function App() {
+
+  return (
+    <BrowserRouter>
+
+      <Routes>
+
+        <Route
+          path="/"
+          element={<Home />}
+        />
+
+        <Route
+          path="/symptom-checker"
+          element={<SymptomChecker />}
+        />
+
+      </Routes>
+
+    </BrowserRouter>
+  );
+}
+
 
 export default App;
