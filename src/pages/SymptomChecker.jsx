@@ -11,22 +11,43 @@ function SymptomChecker() {
     currentMedicines: ""
   });
 
+  const [error, setError] = useState("");
+
   const handleChange = (event) => {
+
     const { name, value } = event.target;
 
-    setFormData({
-      ...formData,
+    setFormData((previousData) => ({
+      ...previousData,
       [name]: value
-    });
+    }));
+
+    setError("");
   };
+
 
   const handleSubmit = (event) => {
+
     event.preventDefault();
 
-    console.log("User health information:", formData);
+    // Basic validation
+    if (
+      !formData.symptoms ||
+      !formData.duration ||
+      !formData.severity ||
+      !formData.age
+    ) {
+      setError("Please fill in all required fields.");
+      return;
+    }
 
-    alert("Information submitted successfully!");
+    console.log("Submitted health information:");
+    console.log(formData);
+
+    alert("Your information has been submitted!");
+
   };
+
 
   return (
     <div className="checker-page">
@@ -36,18 +57,19 @@ function SymptomChecker() {
         <h1>Tell us about your problem</h1>
 
         <p className="checker-description">
-          Provide some information about your symptoms.
-          MediGuide AI will use this information to provide
-          general healthcare guidance.
+          Provide information about your symptoms so MediGuide AI
+          can provide general healthcare guidance.
         </p>
+
 
         <form onSubmit={handleSubmit}>
 
           {/* Symptoms */}
 
           <div className="form-group">
+
             <label>
-              What problem are you experiencing?
+              What problem are you experiencing? *
             </label>
 
             <textarea
@@ -56,16 +78,17 @@ function SymptomChecker() {
               onChange={handleChange}
               placeholder="Example: I have fever, cough and sore throat..."
               rows="5"
-              required
             />
+
           </div>
+
 
           {/* Duration */}
 
           <div className="form-group">
 
             <label>
-              How long have you had these symptoms?
+              How long have you had these symptoms? *
             </label>
 
             <input
@@ -74,25 +97,25 @@ function SymptomChecker() {
               value={formData.duration}
               onChange={handleChange}
               placeholder="Example: 3 days"
-              required
             />
 
           </div>
+
 
           {/* Severity */}
 
           <div className="form-group">
 
             <label>
-              How severe are your symptoms?
+              How severe are your symptoms? *
             </label>
 
             <select
               name="severity"
               value={formData.severity}
               onChange={handleChange}
-              required
             >
+
               <option value="">
                 Select severity
               </option>
@@ -113,12 +136,13 @@ function SymptomChecker() {
 
           </div>
 
+
           {/* Age */}
 
           <div className="form-group">
 
             <label>
-              Age
+              Age *
             </label>
 
             <input
@@ -129,10 +153,10 @@ function SymptomChecker() {
               placeholder="Enter your age"
               min="1"
               max="120"
-              required
             />
 
           </div>
+
 
           {/* Existing conditions */}
 
@@ -152,6 +176,7 @@ function SymptomChecker() {
 
           </div>
 
+
           {/* Current medicines */}
 
           <div className="form-group">
@@ -170,6 +195,16 @@ function SymptomChecker() {
 
           </div>
 
+
+          {/* Error */}
+
+          {error && (
+            <div className="form-error">
+              ⚠️ {error}
+            </div>
+          )}
+
+
           <button
             type="submit"
             className="primary-btn"
@@ -179,14 +214,17 @@ function SymptomChecker() {
 
         </form>
 
+
+        {/* Disclaimer */}
+
         <div className="medical-warning">
 
           <strong>Important:</strong>
 
           <p>
-            MediGuide AI provides general healthcare information
-            and does not replace professional medical diagnosis
-            or treatment.
+            MediGuide AI provides general healthcare information.
+            It does not replace professional medical diagnosis,
+            treatment, or emergency medical care.
           </p>
 
         </div>
